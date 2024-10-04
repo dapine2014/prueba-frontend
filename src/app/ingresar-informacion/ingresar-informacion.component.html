@@ -22,25 +22,27 @@
     <mat-card-title>Shiba Inu</mat-card-title>
     <mat-card-subtitle>Dog Breed</mat-card-subtitle>
   </mat-card-header>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <mat-card-content>
     <mat-form-field>
-      <mat-label>Select</mat-label>
-      <mat-select>
-        <mat-option value="one">First option</mat-option>
-        <mat-option value="two">Second option</mat-option>
+      <mat-label>Tipo de Documento</mat-label>
+      <mat-select formControlName="tipoDocumento" required>
+        <mat-option value="C">Cédula de Ciudadanía</mat-option>
+        <mat-option value="P">Pasaporte</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field>
-      <mat-label>Input</mat-label>
-      <input matInput>
+      <mat-label>Número de Documento</mat-label>
+      <input matInput formControlName="numeroDocumento" [minlength]="8" [maxlength]="11" (keypress)="onlyNumberKey({event : $event})" required>
+      <mat-error>Este campo es obligatorio</mat-error>
     </mat-form-field>
     <section>
       <div class="example-button-row">
-        <button mat-flat-button>Basic</button>
-        <button mat-flat-button disabled>Disabled</button>
+        <button mat-flat-button  [disabled]="form.invalid">Basic</button>
       </div>
     </section>
   </mat-card-content>
+  </form>
   <mat-card-actions>
   </mat-card-actions>
 </mat-card>

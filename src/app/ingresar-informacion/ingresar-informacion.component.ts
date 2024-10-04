@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, numberAttribute} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MatCard, MatCardActions, MatCardHeader} from '@angular/material/card';
 import {MatCardModule} from '@angular/material/card';
@@ -35,4 +35,14 @@ export class IngresarInformacionComponent {
       // Aquí puedes manejar la lógica para mostrar la pantalla de resumen
     }
   }
+
+  onlyNumberKey({event}: { event: any }): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
+  }
+
+  protected readonly numberAttribute = numberAttribute;
 }

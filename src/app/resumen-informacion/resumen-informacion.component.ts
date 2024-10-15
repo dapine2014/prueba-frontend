@@ -16,7 +16,7 @@ import {MatInputModule} from '@angular/material/input';
   styleUrl: './resumen-informacion.component.css'
 })
 export class ResumenInformacionComponent {
-  cliente = {
+  /*cliente = {
     tipoDocumento: 'Cédula de Ciudadanía',
     numeroDocumento: '23445322',
     primerNombre: 'Juan',
@@ -26,9 +26,16 @@ export class ResumenInformacionComponent {
     telefono: '3123456789',
     direccion: 'Calle Falsa 123',
     ciudad: 'Bogotá'
-  };
+  };*/
+  cliente:any;
 
-  constructor(private router: Router) { }
+
+  constructor(private router: Router) {
+    const navigation = this.router.getCurrentNavigation();
+    this.cliente = navigation?.extras.state ? navigation.extras.state['cliente'] : undefined;
+
+    console.log(this.cliente)
+  }
 
   volver() {
     this.router.navigate(['/']);
